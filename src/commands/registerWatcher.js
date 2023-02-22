@@ -1,14 +1,24 @@
-const { SlashCommandBuilder } = require('discord.js')
+const { SlashCommandBuilder } = require('discord.js');
+const { user_ID } = require('..');
+
+console.log(user_ID)
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('register')
         .setDescription('Registers user to watcher list'),
     async execute(interaction) {
-        const user = interaction.user
-        await interaction.reply({
-            content: `${user} has been added to watch list`,
-            ephemeral:true
-        })
+        const id = interaction.user.id;
+        if (user_ID.includes(id)) {
+            await interaction.reply({
+                content: `${interaction.user} is already registered`,
+                ephemeral: true
+            })
+        } else {
+            await interaction.reply({
+                content: `${interaction.user} has been added to watch list`,
+                ephemeral:true
+            })
+        }
     }
 }
