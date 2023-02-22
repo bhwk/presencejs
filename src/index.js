@@ -1,11 +1,10 @@
 require("dotenv").config();
-const fs = require("node:fs");
-const path = require("node:path");
+const { connect } = require('mongoose')
 const { Client, Events, GatewayIntentBits, Collection } = require("discord.js");
 const { loadEvents } = require("./handlers/loadEvents");
 const { loadCommands } = require("./handlers/loadCommands");
 
-const user_ID = ["194394759131824128"];
+const user_ID = [];
 exports.user_ID = user_ID
 
 const client = new Client({
@@ -19,6 +18,9 @@ client.once(Events.ClientReady, (c) => {
 });
 
 
-client.login(process.env.TOKEN);
 loadEvents(client);
 loadCommands(client);
+client.login(process.env.TOKEN);
+(async () =>  {
+	await connect(process.env.DATABASE_TOKEN).catch(console.error);
+})();
