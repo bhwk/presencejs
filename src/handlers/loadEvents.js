@@ -1,6 +1,3 @@
-const event = (event) => require(`../events/client/${event}`);
-const mongoEvent = (mongoEvent) =>
-    require(`../events/mongoEvents/${mongoEvent}`);
 const { connection } = require('mongoose');
 const fs = require('fs');
 const path = require('path');
