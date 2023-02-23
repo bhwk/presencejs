@@ -6,11 +6,9 @@ const { loadCommands } = require('./handlers/loadCommands');
 const Presence = require('./schemas/presence');
 const express = require('express');
 const app = express();
-const PORT = 8080;
 
 app.get('/presence/:id', async (req, res) => {
     const { id } = req.params;
-    console.log(id);
     let presenceProfile = await Presence.findOne({
         userID: id,
     });
@@ -18,6 +16,7 @@ app.get('/presence/:id', async (req, res) => {
     if (!presenceProfile) {
         res.status(418).send({ message: 'User ID does not exist!' });
     } else {
+        console.log(`[request] discord id: ${id}`);
         res.status(200).send({ presenceProfile });
     }
 });
@@ -32,8 +31,8 @@ client.once(Events.ClientReady, (c) => {
     console.log(`[Ready] Logged in as ${c.user.tag}`);
 
     app.use(express.json());
-    app.listen(PORT, () => {
-        console.log(`[EXPRESS] Listening on PORT:${PORT}`);
+    app.listen(proccess.env.PORT, () => {
+        console.log(`[EXPRESS] Listening for requests`);
     });
 });
 
