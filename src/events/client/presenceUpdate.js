@@ -6,22 +6,20 @@ module.exports = {
         presenceProfile = await Presence.findOne({
             userID: newPresence.user.id,
         });
-        if (!presenceProfile) return;
-        else {
-            presenceProfile.status = newPresence.status;
-            if (newPresence.activities.length === 0) {
-                presenceProfile.activity = 'None';
-                presenceProfile.save().catch(console.error);
-
-                console.log(
-                    `[${newPresence.status}] ${newPresence.user?.username}`
-                );
+        if (!presenceProfile) {
+            console.log('User not registered');
+            return;
+        } else {
+            const status = newPresence.status;
+            const activity = newPresence.activities[0];
+            if (activity) {
+                presenceProfile.has_activity = true;
             } else {
-                const activity = newPresence.activities[0];
-                presenceProfile.activity = activity.name;
-                console.log(presenceProfile.activity);
-                presenceProfile.save().catch(console.error);
+                presenceProfile.has_activity = false;
             }
+            presenceProfile.status = status;
+            presenceProfile.activity = activity;
+            presenceProfile.save().catch(console.error);
         }
     },
 };

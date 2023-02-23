@@ -18,7 +18,7 @@ function loadEvents(client) {
         const event = require(filePath);
         client.on(event.name, (...args) => {
             event.execute(...args);
-            console.log(event.name);
+            console.log(`[${event.name}]`);
         });
     }
 
