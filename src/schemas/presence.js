@@ -2,7 +2,8 @@ const { Schema, model } = require('mongoose');
 const presenceSchema = new Schema({
     _id: Schema.Types.ObjectId,
     userID: String,
-    activity: { type: String, required: false },
+    status: String,
+    activity: String,
 });
 
 module.exports = model('Presence', presenceSchema, 'Users');
