@@ -4,9 +4,6 @@ const { Client, Events, GatewayIntentBits, Collection } = require('discord.js');
 const { loadEvents } = require('./handlers/loadEvents');
 const { loadCommands } = require('./handlers/loadCommands');
 
-const user_ID = [];
-exports.user_ID = user_ID;
-
 const client = new Client({
     intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildPresences],
 });
