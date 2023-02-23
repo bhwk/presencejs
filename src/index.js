@@ -12,7 +12,6 @@ app.get('/presence/:id', async (req, res) => {
     let presenceProfile = await Presence.findOne({
         userID: id,
     });
-    console.log(presenceProfile);
     if (!presenceProfile) {
         res.status(418).send({ message: 'User ID does not exist!' });
     } else {
@@ -31,7 +30,7 @@ client.once(Events.ClientReady, (c) => {
     console.log(`[Ready] Logged in as ${c.user.tag}`);
 
     app.use(express.json());
-    app.listen(proccess.env.PORT, () => {
+    app.listen(process.env.PORT, () => {
         console.log(`[EXPRESS] Listening for requests`);
     });
 });
