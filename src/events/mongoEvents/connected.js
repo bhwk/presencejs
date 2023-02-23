@@ -1,6 +1,6 @@
 module.exports = {
-	name: 'connected',
-	execute(client) {
-		console.log('[Database Status]: Connected');
-	},
+    name: 'connected',
+    async execute(client) {
+        console.log('[Database Status]: Connected');
+    },
 };
