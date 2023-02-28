@@ -39,5 +39,7 @@ loadEvents(client);
 loadCommands(client);
 client.login(process.env.TOKEN);
 (async () => {
-    await connect(process.env.DATABASE_TOKEN).catch(console.error);
+    await connect(process.env.MONGO_DB, { dbName: process.env.DB_NAME }).catch(
+        console.error
+    );
 })();
