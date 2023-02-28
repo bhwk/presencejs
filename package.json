@@ -5,7 +5,9 @@
     "main": "src/index.js",
     "scripts": {
         "dev": "nodemon --config nodemon.json src/index.js",
-        "devServer": "nodemon server.js"
+        "index": "nodemon src/index.js",
+        "deployCommands": "node src/deploy-commands.js",
+        "start": "npm run deployCommands & npm run index"
     },
     "keywords": [],
     "author": "",
