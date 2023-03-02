@@ -16,7 +16,7 @@ app.get('/presence/:id', async (req, res) => {
         res.status(418).send({ message: 'User ID does not exist!' });
     } else {
         console.log(`[request] discord id: ${id}`);
-        res.status(200).send({ presenceProfile });
+        res.status(200).send(presenceProfile);
     }
 });
 
